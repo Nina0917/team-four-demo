@@ -1,0 +1,29 @@
+name: Notify Stale PRs
+
+on:
+  schedule:
+    - cron: '*/1 * * * 1-5' # Every 1 minute for testing
+  workflow_dispatch: # manual trigger option
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install node-fetch
+        run: npm install node-fetch@3
+
+      - name: Run stale PR notifier
+        run: node .github/scripts/stale-prs.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          REPO_OWNER: your-org
+          REPO_NAME: your-repo
+          # STALE_DAYS: 2
