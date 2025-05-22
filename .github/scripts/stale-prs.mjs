@@ -27,11 +27,16 @@ const run = async () => {
 
   if (!stale.length) return;
 
+  console.log(`Found ${stale.length} stale PRs:`);
+
   let message = `*Stale PRs (≥ ${staleDays} days old)* 📉\n`;
 
   stale.forEach(pr => {
     message += `• <${pr.html_url}|#${pr.number} - ${pr.title}> by \`${pr.user.login}\` (last updated ${pr.updated_at})\n`;
   });
+
+  console.log('sending to slack:', message);
+  console.log('slackWebhook:', slackWebhook);
 
   await fetch(slackWebhook, {
     method: 'POST',
