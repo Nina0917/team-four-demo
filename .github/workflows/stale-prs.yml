@@ -2,7 +2,7 @@ name: Notify Stale PRs
 
 on:
   schedule:
-    - cron: '*/1 * * * 1-5' # Every 1 minute for testing
+    - cron: '0 16 * * 1-5' # Every weekday at 16:00 UTC
   workflow_dispatch: # manual trigger option
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           REPO_OWNER: Nina0917
           REPO_NAME: team-four-demo
-          # STALE_DAYS: 2
+          STALE_DAYS: 0.5

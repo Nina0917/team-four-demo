@@ -4,12 +4,8 @@ const slackWebhook = process.env.SLACK_WEBHOOK_URL;
 const githubToken = process.env.GITHUB_TOKEN;
 const owner = process.env.REPO_OWNER;
 const repo = process.env.REPO_NAME;
-// const staleDays = parseInt(process.env.STALE_DAYS || '2');
-// const cutoff = new Date(Date.now() - staleDays * 24 * 60 * 60 * 1000);
-
-// stale for 2 minutes
-const staleDays = 2 * 60 * 1000;
-const cutoff = new Date(Date.now() - staleDays);
+const staleDays = parseInt(process.env.STALE_DAYS || '2');
+const cutoff = new Date(Date.now() - staleDays * 24 * 60 * 60 * 1000);
 
 const headers = {
   Authorization: `token ${githubToken}`,
@@ -27,16 +23,11 @@ const run = async () => {
 
   if (!stale.length) return;
 
-  console.log(`Found ${stale.length} stale PRs:`);
-
   let message = `*Stale PRs (≥ ${staleDays} days old)* 📉\n`;
 
   stale.forEach(pr => {
     message += `• <${pr.html_url}|#${pr.number} - ${pr.title}> by \`${pr.user.login}\` (last updated ${pr.updated_at})\n`;
   });
-
-  console.log('sending to slack:', message);
-  console.log('slackWebhook:', slackWebhook);
 
   await fetch(slackWebhook, {
     method: 'POST',
