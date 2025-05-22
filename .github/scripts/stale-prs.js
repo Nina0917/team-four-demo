@@ -5,11 +5,11 @@ const githubToken = process.env.GITHUB_TOKEN;
 const owner = process.env.REPO_OWNER;
 const repo = process.env.REPO_NAME;
 // const staleDays = parseInt(process.env.STALE_DAYS || '2');
+// const cutoff = new Date(Date.now() - staleDays * 24 * 60 * 60 * 1000);
 
-// stale for 5 minutes
-const staleDays = parseInt(process.env.STALE_DAYS || '0.0034722222'); // 5 minutes in days
-
-const cutoff = new Date(Date.now() - staleDays * 24 * 60 * 60 * 1000);
+// stale for 2 minutes
+const staleTime = 2 * 60 * 1000;
+const cutoff = new Date(Date.now() - staleTime);
 
 const headers = {
   Authorization: `token ${githubToken}`,
