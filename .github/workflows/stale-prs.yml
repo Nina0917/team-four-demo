@@ -24,6 +24,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          REPO_OWNER: your-org
-          REPO_NAME: your-repo
+          REPO_OWNER: Nina0917
+          REPO_NAME: team-four-demo
           # STALE_DAYS: 2
