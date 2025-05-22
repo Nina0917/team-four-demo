@@ -20,7 +20,7 @@ jobs:
         run: npm install node-fetch@3
 
       - name: Run stale PR notifier
-        run: node .github/scripts/stale-prs.js
+        run: node .github/scripts/stale-prs.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
