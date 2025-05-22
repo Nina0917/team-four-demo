@@ -1,4 +1,5 @@
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 const slackWebhook = process.env.SLACK_WEBHOOK_URL;
 const githubToken = process.env.GITHUB_TOKEN;
