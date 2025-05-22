@@ -8,8 +8,8 @@ const repo = process.env.REPO_NAME;
 // const cutoff = new Date(Date.now() - staleDays * 24 * 60 * 60 * 1000);
 
 // stale for 2 minutes
-const stayleDays = 2 * 60 * 1000;
-const cutoff = new Date(Date.now() - stayleDays);
+const staleDays = 2 * 60 * 1000;
+const cutoff = new Date(Date.now() - staleDays);
 
 const headers = {
   Authorization: `token ${githubToken}`,
